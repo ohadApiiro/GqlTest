@@ -1,12 +1,10 @@
-import {Resolver, Query, Ctx} from "type-graphql";
+import {Resolver, Query, Mutation, ObjectType, Field, ID} from "type-graphql";
 
-// import { User } from "../../entity/User";
-// import { MyContext } from "../../types/MyContext";
 
 @Resolver()
 export class MeResolver {
     @Query(() => User, {nullable: true, complexity: 5})
-    async me(ctx: MyContext) {
+    async matoki(ctx: MyContext) {
         return undefined;
     }
 
@@ -14,4 +12,13 @@ export class MeResolver {
     async createBook(name: string) {
         return Book.create({ name }).save();
     }
+}
+
+@ObjectType()
+export class Product {
+    @Field(() => ID)
+    id: number;
+
+    @Field()
+    name: string;
 }
